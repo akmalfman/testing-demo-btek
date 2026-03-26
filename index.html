@@ -1,11 +1,97 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Simple Counter App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f9;
+            margin: 0;
+        }
+        .counter-container {
+            text-align: center;
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        h1 { color: #333; }
+        #counter-value {
+            font-size: 4rem;
+            margin: 1rem 0;
+            font-weight: bold;
+            color: #007bff;
+        }
+        .buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            transition: opacity 0.2s;
+        }
+        .btn-minus { background-color: #dc3545; color: white; }
+        .btn-plus { background-color: #28a745; color: white; }
+        .btn-reset { background-color: #6c757d; color: white; }
+        button:hover { opacity: 0.8; }
+    </style>
 </head>
 <body>
-    <p>Hello wok</p>
+
+    <div class="counter-container">
+        <h1>Counter</h1>
+        <!-- Elemen untuk Unit Testing -->
+        <div id="counter-value" data-testid="counter-display">0</div>
+        
+        <div class="buttons">
+            <button class="btn-minus" id="btn-minus" data-testid="minus-button">Kurang (-)</button>
+            <button class="btn-reset" id="btn-reset" data-testid="reset-button">Reset</button>
+            <button class="btn-plus" id="btn-plus" data-testid="plus-button">Tambah (+)</button>
+        </div>
+    </div>
+
+    <script>
+        // Ambil elemen DOM
+        const display = document.getElementById('counter-value');
+        const btnMinus = document.getElementById('btn-minus');
+        const btnPlus = document.getElementById('btn-plus');
+        const btnReset = document.getElementById('btn-reset');
+
+        let count = 0;
+
+        // Fungsi Update Display
+        const updateDisplay = () => {
+            display.innerText = count;
+            // Contoh validasi sederhana: angka tidak boleh merah jika >= 0
+            display.style.color = count < 0 ? "#dc3545" : "#007bff";
+        };
+
+        // Event Listeners
+        btnPlus.addEventListener('click', () => {
+            count++;
+            updateDisplay();
+        });
+
+        btnMinus.addEventListener('click', () => {
+            count--;
+            updateDisplay();
+        });
+
+        btnReset.addEventListener('click', () => {
+            count = 0;
+            updateDisplay();
+        });
+    </script>
 </body>
 </html>
