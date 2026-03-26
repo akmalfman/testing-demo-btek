@@ -62,22 +62,29 @@
     </div>
 
     <script src="./lib/counter.js"></script>
+    <script src="./lib/get-random-color.js"></script>
 
 <script>
     const counter = createCounter(0);
     const display = document.getElementById('counter-value');
 
     document.getElementById('btn-plus').addEventListener('click', () => {
-        display.innerText = counter.increment();
+        const newVal = counter.increment();
+        display.innerText = newVal;
+        display.style.color = getRandomColor();
     });
 
     document.getElementById('btn-minus').addEventListener('click', () => {
-        display.innerText = counter.decrement();
+        const newVal = counter.decrement();
+        display.innerText = newVal;
+        display.style.color = getRandomColor();
     });
 
     document.getElementById('btn-reset').addEventListener('click', () => {
         display.innerText = counter.reset();
     });
+
+
 </script>
 </body>
 </html>
